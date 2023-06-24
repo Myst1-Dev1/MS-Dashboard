@@ -1,34 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dashboard com Next.js e Firebase
 
-## Getting Started
+Este repositório contém um projeto de dashboard desenvolvido com Next.js e Firebase. O dashboard permite a criação de contas de usuário, login com as contas criadas e a criação de novos usuários.
 
-First, run the development server:
+## Como Usar
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Clone o repositório do github em sua maquina e utilize o comando yarn ou npm install para instalar as dependências, para utilizar o dashboard você precisa criar uma conta e logar nela, após isso você pode preencher um formulário para adicionar novos usuários.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O dashboard possui as seguintes funcionalidades:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Criação de contas de usuário: Os usuários podem se cadastrar no sistema fornecendo um nome de usuário, endereço de e-mail e senha. As informações do usuário são armazenadas no Firebase Authentication.
 
-## Learn More
+2. Login: Os usuários registrados podem fazer login no sistema utilizando seu endereço de e-mail e senha. O Firebase Authentication é utilizado para autenticar os usuários.
 
-To learn more about Next.js, take a look at the following resources:
+3. Criação de novos usuários: Após fazer login, os usuários têm a capacidade de criar novos usuários no sistema. Eles podem fornecer os detalhes do novo usuário, como nome, endereço de e-mail e senha, e o novo usuário é adicionado ao banco de dados do Firebase.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuração
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Para configurar e executar o projeto em sua máquina local, siga as etapas abaixo:
 
-## Deploy on Vercel
+1. Certifique-se de ter o Node.js instalado em sua máquina. Você pode baixar a versão mais recente do Node.js em: https://nodejs.org
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Clone este repositório para o diretório desejado em sua máquina:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   ```
+
+3. Acesse o diretório do projeto:
+
+   ```
+   cd nome-do-repositorio
+   ```
+
+4. Instale as dependências do projeto utilizando o npm ou yarn:
+
+   ```
+   npm install
+   ```
+
+   ou
+
+   ```
+   yarn install
+   ```
+
+5. Crie um projeto no Firebase e obtenha as credenciais de autenticação (apiKey, authDomain, projectId, etc.).
+
+6. Crie um arquivo `.env.local` na raiz do projeto e adicione as seguintes variáveis de ambiente, substituindo os valores pelas suas próprias credenciais do Firebase:
+
+   ```
+   NEXT_PUBLIC_FIREBASE_API_KEY=xxxxxxxxxxxxx
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=xxxxxxxxxxxxx
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=xxxxxxxxxxxxx
+   NEXT_PUBLIC_FIREBASE_DATABASE_URL=xxxxxxxxxxxxx
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=xxxxxxxxxxxxx
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=xxxxxxxxxxxxx
+   NEXT_PUBLIC_FIREBASE_APP_ID=xxxxxxxxxxxxx
+   ```
+
+7. Inicie o servidor de desenvolvimento:
+
+   ```
+   npm run dev
+   ```
+
+   ou
+
+   ```
+   yarn dev
+   ```
+
+8. O servidor de desenvolvimento estará em execução em `http://localhost:3000`. Acesse essa URL em seu navegador para ver o dashboard em ação.
