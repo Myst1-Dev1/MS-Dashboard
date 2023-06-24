@@ -2,10 +2,6 @@
 
 Este repositório contém um projeto de dashboard desenvolvido com Next.js e Firebase. O dashboard permite a criação de contas de usuário, login com as contas criadas e a criação de novos usuários.
 
-## Como Usar
-
-Clone o repositório do github em sua maquina e utilize o comando yarn ou npm install para instalar as dependências, para utilizar o dashboard você precisa criar uma conta e logar nela, após isso você pode preencher um formulário para adicionar novos usuários.
-
 ## Funcionalidades
 
 O dashboard possui as seguintes funcionalidades:
