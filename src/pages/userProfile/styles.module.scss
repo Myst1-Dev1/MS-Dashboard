@@ -1,0 +1,159 @@
+.userProfile {
+    display: flex;
+    .pageContent {
+        flex: 1;
+        padding: 1.5rem 2rem;
+
+        .userContainer {
+            margin-top: 30px;
+            .userBox {
+                margin-bottom: 20px;
+                .imgContainer {
+                    width: 150px;
+                    height: 150px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+                
+                span {
+                    color: var(--gray-400);
+                    font-weight: bold;
+                }
+            }
+
+            .chartContainer {
+                height: 250px;
+            }
+        }
+
+        .updateUserData {
+                margin-top: 40px;
+                height: 50px;
+                width: 120px;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: var(--green-500);
+                transition: filter 0.3s;
+
+                &:hover {
+                    filter: brightness(0.8);
+                }    
+        }
+
+        .closeFormIcon {
+            cursor: pointer;
+            font-size: 30px;
+            transition: 0.3s;
+            &:hover {
+                color: var(--red-500);
+            }
+        }
+
+        .formContainer {
+            animation: accordion 0.3s ease;
+
+            @keyframes accordion {
+                0% {
+                    opacity: 0;
+                }
+            }
+
+            form {
+                .icon {
+                    color: var(--red-500);
+                    font-size: 20px;
+                    cursor: pointer;
+                    margin-left: 10px;
+                }
+    
+                input[type="file"] {
+                    display: none;
+                }
+    
+                // O código abaixo foi utilizado para remover as arrows do input number
+                input[type=number]::-webkit-inner-spin-button { 
+                    -webkit-appearance: none;       
+                }
+    
+                button {
+                    width: 200px;
+                    height: 50px;
+                    background-color: var(--red-500);
+                    border: none;
+                    border-radius: 10px;
+                    color: #fff;
+                    transition: 0.3s;
+    
+                    &:hover {
+                        filter: brightness(0.8);
+                    }
+                }
+            }
+        }
+
+        .graphsContainer {
+            
+            .graphBox {
+                width: 250px;
+            }
+
+            .graphBox,.cultureFit, .jobDetails {
+                border: 1px solid var(--gray-400);
+                border-radius: 10px;
+                padding: 1rem;
+
+                span {
+                    font-weight: bold;
+                }
+                
+                span, .icon {
+                    color: var(--red-500);
+                }
+
+                .icon {
+                    font-size: 20px;
+                }
+
+                .skillBox {
+                    background-color: var(--gray-800);
+                    border-radius: 5px;
+                    padding: 0.5rem;
+                    
+                    h6 {
+                        margin: auto;
+                        text-align: center;
+                        color: #fff;
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+
+            .jobDetails {
+                h6 {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:750px) {
+    .userProfile{
+        .pageContent{
+            .graphsContainer{
+
+                .graphBox{
+                    width: 100%;
+                }
+                
+            }
+        }
+    }
+}

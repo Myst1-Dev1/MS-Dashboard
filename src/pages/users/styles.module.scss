@@ -1,0 +1,74 @@
+.users {
+    display: flex;
+
+    .pageContent {
+        flex: 1;
+        padding: 1.5rem 2rem;
+
+        .addNewUser {
+            background-color: var(--red-500);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            height: 50px;
+            width: 250px;
+            transition: filter 0.3s;
+            
+            &:hover{
+                filter: brightness(0.8);
+            }
+        }
+
+        .tableContainer {
+
+            .tableData {
+                vertical-align: middle;
+
+                .idValue {
+                    max-width: 5ch;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .imgContainer {
+                    width: 50px;
+                    height: 50px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+                
+                td {
+                    margin: auto;
+                }
+
+                .deleteIcon {
+                    color: var(--red-500);
+                }
+                .viewIcon {
+                    color: #fff;
+                }
+
+                .deleteIcon, .viewIcon {
+                    font-size: 15px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 60px;
+            }
+        }
+    }
+}

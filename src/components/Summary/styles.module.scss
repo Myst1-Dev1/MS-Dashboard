@@ -1,0 +1,88 @@
+.summary {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .summaryBox {
+        width: 250px;
+        border: 1px solid var(--gray-400);
+        border-radius: 10px;
+        margin-bottom: 30px;
+
+        .userBox, .productBox, .orderBox, .earnBox {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-left: 15px;
+            margin-top: -10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .userIcon, .productIcon, .orderIcon, .earnIcon {
+                font-size: 25px;
+            }
+        }
+
+        .userBox {
+            background-color: var(--red-300);
+            .userIcon {
+                color: var(--red-500);
+            }
+        }
+        .productBox {
+            background-color: var(--violet-200);
+            .productIcon {
+                color: var(--violet-500);
+            }
+        }
+
+        .orderBox {
+            background-color: var(--yellow-200);
+            .orderIcon {
+                color: var(--yellow-500);
+            }
+        }
+
+        .earnBox {
+            background-color: var(--green-200);
+            .earnIcon {
+                color: var(--green-500);
+            }
+        }
+
+        .report {
+            border-top: 1px solid var(--gray-400);
+
+            p {
+                font-size: 12px;
+                margin-left: 12px;
+                margin-top: 10px;
+
+                span {
+                    color: var(--green-500);
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:750px) {
+    .summary{
+        .summaryBox{
+            width: 180px;
+
+            h4 {
+                font-size: 12px;
+            }
+
+            .report{
+                p{
+                    font-size: 8px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .inputBox {
+        width: 250px;
+        height: 50px;
+        border: 1px solid var(--gray-400);
+        border-radius: 10px;
+        padding: 0.625rem;
+        position: relative;
+
+        input {
+            border: none;
+            background: none;
+            outline: none;
+            color: #fff;
+        }
+        
+        .icon {
+            color: var(--gray-400);
+            position: absolute;
+            right: 10px;
+            bottom: 15px;
+        }
+    }
+
+    .userIcons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .icon {
+            color: var(--gray-400);
+            font-size: 20px;
+        }
+
+        h6 {
+            color: var(--gray-400);
+            border-left: 1px  solid var(--gray-400);
+            padding-left: 10px;
+        }
+
+        .userBox {
+            position: relative;
+
+            img {
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+            }
+
+            .userStatus {
+                background-color: var(--green-500);
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                border: 1px solid var(--background);
+                position: absolute;
+                top: 36px;
+                right: 0px;
+            }
+        }
+    }
+}
+
+@media(max-width:750px) {
+    .header {
+        justify-content: flex-end;
+        align-items: flex-end;
+        .inputBox{
+            display: none;
+        }
+    }
+}

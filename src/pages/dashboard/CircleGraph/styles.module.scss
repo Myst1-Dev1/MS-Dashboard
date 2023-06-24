@@ -1,0 +1,43 @@
+
+.midle {
+    display: grid;
+    place-content: center;
+    position: relative;
+    margin: 10px;
+
+    svg {
+        width: 12rem;
+        height: 7rem;
+        transform: rotate(-90deg);
+
+        circle {
+            stroke-dasharray: 618;
+            stroke-dashoffset: 618;
+            stroke-width: 20;
+            fill: none;
+
+            &:nth-child(1) {
+                stroke-dashoffset: 0;
+            }
+
+            &:nth-child(2) {
+                stroke-dashoffset: 618 - calc((618 * 70)/100);
+                animation:progress 1s ease-in-out forwards;
+            }
+
+            @keyframes progress{
+                0% {
+                    stroke-dasharray: 618;
+                    stroke-dashoffset: 618;
+                }
+            }
+        }
+    }
+    .content {
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+       
+}

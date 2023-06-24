@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background:#191919;
+
+    --gray-300:#d1d5db;
+    --gray-400:#9ca3af;
+    --gray-800:#1f2937;
+
+    --blue-500:#3b82f6;
+
+    --red-300:#fca5a5;
+    --red-500:#ef4444;
+
+    --green-200:#bbf7d0;
+    --green-500:#22c55e;
+
+    --violet-200:#ddd6fe;
+    --violet-500:#8b5cf6;
+
+    --yellow-200:#fef08a;
+    --yellow-500:#eab308;
+}
+
+body {
+    background-color: var(--background);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.table > :not(caption) > * > * {
+    padding: 1rem 0.5rem;
+    color: #fff;
+    border-color:#9ca3af;
+    background-color: transparent;
+}
+
+.apexcharts-tooltip {
+    background: #f3f3f3;
+    color: #000;
+  }
+
+@media (max-width: 1080px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+
+@media(max-width:750px) {
+    html {
+        font-size: 87.5%;
+      }
+}

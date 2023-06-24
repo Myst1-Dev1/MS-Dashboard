@@ -1,0 +1,66 @@
+.createUser {
+    display: flex;
+
+    .pageContent {
+        flex:1;
+        padding: 1rem 2rem;
+
+        .formContainer {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+
+            .imgContainer {
+                width: 120px;
+                height: 120px;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+
+            form {
+                width: 100%;
+
+                .icon {
+                    color: var(--red-500);
+                    font-size: 20px;
+                    cursor: pointer;
+                    margin-left: 10px;
+                }
+
+                input[type="file"] {
+                    display: none;
+                }
+
+                .inputBox {
+
+                     // O código abaixo foi utilizado para remover as arrows do input number
+                    input[type=number]::-webkit-inner-spin-button { 
+                        -webkit-appearance: none;
+                            
+                    }
+                }
+
+                button {
+                    width: 200px;
+                    height: 50px;
+                    background-color: var(--red-500);
+                    border: none;
+                    border-radius: 10px;
+                    color: #fff;
+                    transition: 0.3s;
+
+                    &:hover {
+                        filter: brightness(0.8);
+                    }
+                }
+            }
+        }
+    }
+}

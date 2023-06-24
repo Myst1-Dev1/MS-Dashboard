@@ -1,0 +1,83 @@
+.sideBar {
+    // background: url(../../../public/images/sideBarBackground.png);
+    // background-size: cover;
+    width: 200px;
+    min-height: 100vh;
+
+    padding: 1.4rem;
+
+    h1 {
+        color: var(--red-500);
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .navItem {
+        h5 {
+            color: var(--gray-300);
+        }
+
+        span {
+            cursor: pointer;
+        }
+    }
+}
+
+.activeMenuIcon {
+    display: none;
+}
+
+.white {
+    color: #fff;
+}
+
+.red {
+    color: var(--red-500);
+}
+
+@media(max-width:750px) {
+    .sideBar {
+        display: none;
+    }
+
+    .responsiveSideBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 200px;
+        min-height: 200vh;
+        height: 100%;
+        background-color: #121212;
+        padding: 1.4rem;
+        z-index: 1000;
+        animation: fadeIn 0.6s ease;
+
+        @keyframes fadeIn {
+            0%{
+                opacity: 0;
+            }
+        }
+
+        .closeMenuIcon {
+            position: absolute;
+            top: 15px;
+            left: 180px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: 20px;
+            color: var(--red-500);
+        }
+    }
+
+        .activeMenuIcon {
+            display: block;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+        }
+    
+}
