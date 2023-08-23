@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from './styles.module.scss';
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 
 import { SideBar } from '../../../components/Sidebar';
 import { Header } from '../../../components/Header';
@@ -17,6 +17,8 @@ import { useRouter } from 'next/router';
 
 
 export default function CreateUser() {
+
+    const Swal = require('sweetalert2');
 
     const router = useRouter();
 

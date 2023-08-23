@@ -1,13 +1,14 @@
 import styles from './styles.module.scss';
-import { Input } from "@/components/Input";
+import { Input } from "../../components/Input";
 import { FaCloudUploadAlt, FaTimes } from "react-icons/fa";
 import { useState, useEffect, useContext, FormEvent } from 'react';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { db, storage } from '@/services/firebase';
+import { db, storage } from '../../services/firebase';
 import { useRouter } from 'next/router';
-import AuthContext from '@/contexts/AuthContext';
+import AuthContext from '../../contexts/AuthContext';
 import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
-import Swal from 'sweetalert2';
+import { destroyCookie } from 'nookies';
+//import Swal from 'sweetalert2';
 
 interface UpdateFormUserProps {
     onOpenForm:boolean;
@@ -17,9 +18,11 @@ interface UpdateFormUserProps {
 export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProps) {
     const { user } = useContext(AuthContext);
 
+    const Swal = require('sweetalert2');
+
     const [file, setFile] = useState<null | any>(null);
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    //const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [nacionality, setNacionality] = useState('');
@@ -52,7 +55,6 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                 await updateDoc(userReference, {
                     file:fileUrl,
                     name:name,
-                    email:email,
                     phone:phone,
                     address:address,
                     nacionality:nacionality,
@@ -68,7 +70,6 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
             const userReference = doc(db, 'loggedUserData', Id);
             await updateDoc(userReference, {
                 name:name,
-                email:email,
                 phone:phone,
                 address:address,
                 nacionality:nacionality,
@@ -80,7 +81,7 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
 
         setFile(null);
         setName('');
-        setEmail('');
+        //setEmail('');
         setPhone('');
         setAddress('');
         setNacionality('');
@@ -92,8 +93,9 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
             html: '<h1 className="text-success">Usuário atualizado com sucesso</h1>'
           })
 
-          router.push('/');
-          localStorage.removeItem('isLoggedIn')
+          //router.push('/');
+          router.reload();
+          destroyCookie(null, 'loggedUser');
           alert('Faça o login novamente');
            
     }
@@ -150,103 +152,105 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
     return (
         <>
             {onOpenForm && (
-                        <div className={`mt-5 ${styles.formContainer}`}>
-                            <div className='d-flex justify-content-between align-items-center'>
-                                <h3>Atualizar Usuário</h3>
-                                <FaTimes onClick={handleCloseUpdateForm} className={styles.closeFormIcon} />
+                <div className={`mt-5 ${styles.formContainer}`}>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <h3>Atualizar Usuário</h3>
+                        <FaTimes onClick={handleCloseUpdateForm} className={styles.closeFormIcon} />
+                    </div>
+                    <form onSubmit={handleUpdateUserData} className='mt-5'>
+                        <div className='row mb-3'>
+                            <div className='col-md-6 mb-5'>
+                                <span>Imagem:</span>
+                                <label htmlFor='file'>
+                                    <FaCloudUploadAlt className={styles.icon} />
+                                </label>
+                                <input 
+                                    type="file" 
+                                    id='file'
+                                    onChange={(e:any) => setFile(e.target.files[0])} 
+                                />
                             </div>
-                            <form onSubmit={handleUpdateUserData} className='mt-5'>
-                                <div className='row mb-3'>
-                                    <div className='col-md-6 mb-5'>
-                                        <span>Imagem:</span>
-                                        <label htmlFor='file'><FaCloudUploadAlt className={styles.icon} /></label>
-                                        <input 
-                                            type="file" 
-                                            id='file'
-                                            onChange={(e:any) => setFile(e.target.files[0])} 
-                                        />
-                                    </div>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor="name">Nome</label>
-                                        <Input 
-                                            type="text" 
-                                            placeholder="John Doe" 
-                                            id="name"
-                                            value={name}
-                                            onChange={(e:any) => setName(e.target.value)} 
-                                        />
-                                    </div>
-                                </div>
-                                <div className='row mb-3'>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor='email'>E-mail</label>
-                                        <Input 
-                                            type="email" 
-                                            placeholder='johndoe@gmail.com' 
-                                            id='email'
-                                            value={email}
-                                            onChange={(e:any) => setEmail(e.target.value)}  
-                                        />
-                                    </div>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor="phone">Telefone</label>
-                                        <Input 
-                                            type="text" 
-                                            placeholder="40028922" 
-                                            id="phone"
-                                            value={phone}
-                                            onChange={(e:any) => setPhone(e.target.value)}  
-                                        />
-                                    </div>
-                                </div>
-                                <div className='row mb-3'>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor='nacionality'>Nacionalidade</label>
-                                        <Input 
-                                            type="text" 
-                                            placeholder='Americano' 
-                                            id='nacionality'
-                                            value={nacionality}
-                                            onChange={(e:any) => setNacionality(e.target.value)}  
-                                        />
-                                    </div>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor="address">Endereço</label>
-                                        <Input 
-                                            type="text" 
-                                            placeholder="Rua lorem porto" 
-                                            id="address"
-                                            value={address}
-                                            onChange={(e:any) => setAddress(e.target.value)}  
-                                        />
-                                    </div>
-                                </div>
-                                <div className='row mb-3'>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor='age'>Idade</label>
-                                        <Input 
-                                            type="number" 
-                                            placeholder='27' 
-                                            id='age'
-                                            value={age}
-                                            onChange={(e:any) => setAge(e.target.value)}  
-                                        />
-                                    </div>
-                                    <div className='d-flex flex-column gap-2 col-md-6'>
-                                        <label htmlFor="country">Páis</label>
-                                        <Input 
-                                            type="text" 
-                                            placeholder="USA" 
-                                            id="country"
-                                            value={country}
-                                            onChange={(e:any) => setCountry(e.target.value)}  
-                                        />
-                                    </div>
-                                </div>
-                                <button type='submit'>Atualizar</button>
-                            </form>
+                            <div className='d-flex flex-column gap-2 col-md-6'>
+                                <label htmlFor="name">Nome</label>
+                                <Input 
+                                    type="text" 
+                                    placeholder="John Doe" 
+                                    id="name"
+                                    value={name}
+                                    onChange={(e:any) => setName(e.target.value)} 
+                                />
+                            </div>
                         </div>
-                    )}
+                        <div className='row mb-3'>
+                            {/* <div className='d-flex flex-column gap-2 col-md-6'>
+                                <label htmlFor='email'>E-mail</label>
+                                <Input 
+                                    type="email" 
+                                    placeholder='johndoe@gmail.com' 
+                                    id='email'
+                                    value={email}
+                                    onChange={(e:any) => setEmail(e.target.value)}  
+                                />
+                            </div> */}
+                            <div className='d-flex flex-column gap-2 col-md-12'>
+                                <label htmlFor="phone">Telefone</label>
+                                <Input 
+                                    type="text" 
+                                    placeholder="40028922" 
+                                    id="phone"
+                                    value={phone}
+                                    onChange={(e:any) => setPhone(e.target.value)}  
+                                />
+                            </div>
+                        </div>
+                        <div className='row mb-3'>
+                            <div className='d-flex flex-column gap-2 col-md-6'>
+                                <label htmlFor='nacionality'>Nacionalidade</label>
+                                <Input 
+                                    type="text" 
+                                    placeholder='Americano' 
+                                    id='nacionality'
+                                    value={nacionality}
+                                    onChange={(e:any) => setNacionality(e.target.value)}  
+                                />
+                            </div>
+                            <div className='d-flex flex-column gap-2 col-md-6'>
+                                <label htmlFor="address">Endereço</label>
+                                <Input 
+                                    type="text" 
+                                    placeholder="Rua lorem porto" 
+                                    id="address"
+                                    value={address}
+                                    onChange={(e:any) => setAddress(e.target.value)}  
+                                />
+                            </div>
+                        </div>
+                        <div className='row mb-3'>
+                            <div className='d-flex flex-column gap-2 col-md-6'>
+                                <label htmlFor='age'>Idade</label>
+                                <Input 
+                                    type="number" 
+                                    placeholder='27' 
+                                    id='age'
+                                    value={age}
+                                    onChange={(e:any) => setAge(e.target.value)}  
+                                />
+                            </div>
+                            <div className='d-flex flex-column gap-2 col-md-6'>
+                                <label htmlFor="country">Páis</label>
+                                <Input 
+                                    type="text" 
+                                    placeholder="USA" 
+                                    id="country"
+                                    value={country}
+                                    onChange={(e:any) => setCountry(e.target.value)}  
+                                />
+                            </div>
+                        </div>
+                        <button type='submit'>Atualizar</button>
+                    </form>
+                </div>
+            )}
         </>
     )
 }

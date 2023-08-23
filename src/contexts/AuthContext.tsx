@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { auth, db } from '../services/firebase';
 import { doc, getDoc} from 'firebase/firestore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { setCookie, parseCookies, destroyCookie } from 'nookies';
 
 const AuthContext = createContext({} as AuthContextData);
 
@@ -49,7 +50,7 @@ useEffect(() => {
     };
 
     const userUid = auth.currentUser?.uid;
-    const storedUser = localStorage.getItem('loggedUser');
+    const { 'loggedUser': storedUser } = parseCookies();
 
     if (storedUser) {
       setTimeout(() => {setUser([JSON.parse(storedUser) as LoggedUserData]);}, 10);
@@ -65,7 +66,8 @@ useEffect(() => {
   // Armazene os dados do usuário logado no armazenamento local sempre que o estado do usuário for atualizado
   if (user.length > 0) {
     setTimeout(() => {
-      localStorage.setItem('loggedUser', JSON.stringify(user[0]));
+      //localStorage.setItem('loggedUser', JSON.stringify(user[0]));
+      setCookie(undefined, 'loggedUser', JSON.stringify(user[0]));
     }, 1000);
   }
 }, [user]);
@@ -78,7 +80,10 @@ const signIn = async (email: string, password: string) => {
     const userData:any = userDoc.exists() ? { id: userDoc.id, ...userDoc.data() } : null;
     if (userData) {
       setUser([userData]);
-      localStorage.setItem('loggedUser', JSON.stringify(userData));
+      //localStorage.setItem('loggedUser', JSON.stringify(userData));
+      setCookie(undefined, 'loggedUser', JSON.stringify(userData), {
+        maxAge: 60 * 60 * 2 // 2 hours
+      });
     }
     router.push('/dashboard');
   } catch (error) {
@@ -93,7 +98,8 @@ const signIn = async (email: string, password: string) => {
     } catch (error) {
       console.log('Erro ao fazer logout:', error);
     }
-    localStorage.removeItem('loggedUser');
+    //localStorage.removeItem('loggedUser');
+    destroyCookie(null, 'loggedUser');
   };
 
   return (

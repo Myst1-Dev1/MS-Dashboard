@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { auth, db } from "../../services/firebase";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ActiveLink } from "@/components/Sidebar/ActiveLink";
+import { ActiveLink } from "../../components/Sidebar/ActiveLink";
 import { doc, setDoc } from "firebase/firestore";
 
 type CreateUserFormData = {
@@ -34,7 +34,8 @@ export default function SignUp() {
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
             await setDoc(doc(db, 'loggedUserData', res.user.uid), {
-                name
+                name,
+                email
             })
             router.push('/');
         } catch (error) {

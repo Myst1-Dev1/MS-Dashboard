@@ -47,7 +47,7 @@ export default function userProfile() {
                                         <div className='d-flex flex-column gap-1'>
                                             <h3>{userData.name}</h3>
                                             <h6><span>Idade:</span> {userData.age}</h6>
-                                            <h6><span>Email:</span> {userData.email}</h6>
+                                            {/* <h6><span>Email:</span> {userData.email}</h6> */}
                                             <h6><span>Telefone:</span> {userData.phone}</h6>
                                             <h6><span>Nacionalidade:</span> {userData.nacionality}</h6>
                                             <h6><span>Endereço:</span> {userData.address}</h6>

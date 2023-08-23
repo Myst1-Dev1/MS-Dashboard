@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from './styles.module.scss';
-import Swal from "sweetalert2";
+//import Swal from "sweetalert2";
 
 import { Header } from "../../components/Header";
 import { SideBar } from "../../components/Sidebar";
@@ -26,6 +26,8 @@ export type UserData = {
 
 export default function Users({data}: {data: UserData[]}) {
     const router = useRouter();
+
+    const Swal = require('sweetalert2');
 
     const [usersData, setUsersData] = useState<UserData[]>(data);
     const itensPerPage = 5;
@@ -60,6 +62,8 @@ export default function Users({data}: {data: UserData[]}) {
         } catch (error) {
             console.log(error);
         }
+
+        router.reload();
 
         Swal.fire({
             icon: 'success',
