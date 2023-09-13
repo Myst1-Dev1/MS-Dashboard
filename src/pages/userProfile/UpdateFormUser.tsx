@@ -22,7 +22,6 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
 
     const [file, setFile] = useState<null | any>(null);
     const [name, setName] = useState('');
-    //const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [nacionality, setNacionality] = useState('');
@@ -164,7 +163,8 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                                 <label htmlFor='file'>
                                     <FaCloudUploadAlt className={styles.icon} />
                                 </label>
-                                <input 
+                                <input
+                                    required = {false}
                                     type="file" 
                                     id='file'
                                     onChange={(e:any) => setFile(e.target.files[0])} 
@@ -172,7 +172,8 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                             </div>
                             <div className='d-flex flex-column gap-2 col-md-6'>
                                 <label htmlFor="name">Nome</label>
-                                <Input 
+                                <Input
+                                    required = {false}
                                     type="text" 
                                     placeholder="John Doe" 
                                     id="name"
@@ -182,19 +183,10 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                             </div>
                         </div>
                         <div className='row mb-3'>
-                            {/* <div className='d-flex flex-column gap-2 col-md-6'>
-                                <label htmlFor='email'>E-mail</label>
-                                <Input 
-                                    type="email" 
-                                    placeholder='johndoe@gmail.com' 
-                                    id='email'
-                                    value={email}
-                                    onChange={(e:any) => setEmail(e.target.value)}  
-                                />
-                            </div> */}
                             <div className='d-flex flex-column gap-2 col-md-12'>
                                 <label htmlFor="phone">Telefone</label>
-                                <Input 
+                                <Input
+                                    required = {false}
                                     type="text" 
                                     placeholder="40028922" 
                                     id="phone"
@@ -206,7 +198,8 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                         <div className='row mb-3'>
                             <div className='d-flex flex-column gap-2 col-md-6'>
                                 <label htmlFor='nacionality'>Nacionalidade</label>
-                                <Input 
+                                <Input
+                                    required = {false}
                                     type="text" 
                                     placeholder='Americano' 
                                     id='nacionality'
@@ -216,7 +209,8 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                             </div>
                             <div className='d-flex flex-column gap-2 col-md-6'>
                                 <label htmlFor="address">Endereço</label>
-                                <Input 
+                                <Input
+                                    required = {false}
                                     type="text" 
                                     placeholder="Rua lorem porto" 
                                     id="address"
@@ -228,7 +222,8 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                         <div className='row mb-3'>
                             <div className='d-flex flex-column gap-2 col-md-6'>
                                 <label htmlFor='age'>Idade</label>
-                                <Input 
+                                <Input
+                                    required = {false}
                                     type="number" 
                                     placeholder='27' 
                                     id='age'
@@ -239,6 +234,7 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                             <div className='d-flex flex-column gap-2 col-md-6'>
                                 <label htmlFor="country">Páis</label>
                                 <Input 
+                                    required = {false}
                                     type="text" 
                                     placeholder="USA" 
                                     id="country"

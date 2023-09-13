@@ -6,16 +6,10 @@
         padding: 1.5rem 2rem;
 
         .graphs {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-
             .totalRevenue, .totalMembers {
                 border: 1px solid var(--gray-400);
                 border-radius: 10px;
                 width: 400px;
-                height: 400px;
 
                 .icon {
                     color: var(--gray-400);

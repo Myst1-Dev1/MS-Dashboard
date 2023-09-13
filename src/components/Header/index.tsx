@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import styles from './styles.module.scss';
 
 import { FaSearch, FaBell, FaEnvelopeOpen } from 'react-icons/fa';
-import AuthContext from '@/contexts/AuthContext';
+import AuthContext from '../../contexts/AuthContext';
 
 export function Header() {
     const { user } = useContext(AuthContext)

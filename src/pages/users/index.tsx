@@ -4,14 +4,14 @@ import styles from './styles.module.scss';
 
 import { Header } from "../../components/Header";
 import { SideBar } from "../../components/Sidebar";
-import { FaTrashAlt, FaEye } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 import { Footer } from "../../components/Footer";
 
 import { useState, useEffect } from 'react';
 import { DocumentData, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "../../services/firebase";
-import { Pagination } from "@/components/Pagination";
-import { ActiveLink } from "@/components/Sidebar/ActiveLink";
+import { Pagination } from "../../components/Pagination";
+import { ActiveLink } from "../../components/Sidebar/ActiveLink";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 

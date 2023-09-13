@@ -20,9 +20,9 @@ export default function Dashboard() {
                 <div className={styles.pageContent}>
                     <Header />
                     <Summary />
-                    <div className={styles.graphs}>
-                        <div className={styles.totalRevenue}>
-                            <div className="d-flex align-items-center justify-content-between mt-3 px-3">
+                    <div className={`${styles.graphs} row gap-4`}>
+                        <div className={`${styles.totalRevenue} col-md-6`}>
+                            <div className="d-flex align-items-center justify-content-between mt-3 px-1">
                                 <h4>Rendimento total</h4>
                                 <BsThreeDotsVertical className={styles.icon} />
                             </div>
@@ -47,7 +47,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.totalMembers}>
+                        <div className={`${styles.totalMembers} col-md-6`}>
                             <div className="mt-3 px-3">
                                 <h4>Últimos 6 meses(Total de membros)</h4>
                                 <ChartGraph />

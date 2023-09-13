@@ -51,8 +51,6 @@ export default function SignUp() {
 
     const onSubmit:SubmitHandler<CreateUserFormData |any> = async (values) => {
         await handleSignUp()
-
-        console.log(values);
     }
 
     return (
