@@ -11,8 +11,9 @@ export function Pagination({ onPages, onSetCurrentPage }: PaginationProps) {
         <>
             <div className={styles.pagination}>
                 <div className='d-flex gap-3'>
-                    {Array.from(Array(onPages), (item ,index) => {
+                    {Array.from(Array(Math.max(0, onPages)), (item, index) => {
                         return  <button
+                                    data-testid="buttonPagination"
                                     value={index}
                                     key={index}
                                     onClick={() => onSetCurrentPage(index)}

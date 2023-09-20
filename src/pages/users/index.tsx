@@ -29,7 +29,7 @@ export default function Users({data}: {data: UserData[]}) {
 
     const Swal = require('sweetalert2');
 
-    const [usersData, setUsersData] = useState<UserData[]>(data);
+    const [usersData, setUsersData] = useState<UserData[]>([]);
     const itensPerPage = 5;
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -37,22 +37,22 @@ export default function Users({data}: {data: UserData[]}) {
     const startIndex = currentPage * itensPerPage;
     const endIndex = startIndex + itensPerPage;
     const currentItems = data.slice(startIndex, endIndex);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const querySnapshot = await getDocs(collection(db, "users"));
-                const list: DocumentData[] | any = [];
-                querySnapshot.forEach((doc) => {
-                    list.push({id: doc.id, ...doc.data()});
-                });
-                setUsersData(list);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [])
+  
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const querySnapshot = await getDocs(collection(db, "users"));
+    //             const list: DocumentData[] | any = [];
+    //             querySnapshot.forEach((doc) => {
+    //                 list.push({ id: doc.id, ...doc.data() });
+    //             });
+    //             setUsersData(list);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, []);
 
     async function handleDeleteUser(id:string) {
         try {
@@ -80,7 +80,7 @@ export default function Users({data}: {data: UserData[]}) {
                 <div className={styles.pageContent}>
                     <Header />
                     <div className="mt-4">
-                        <ActiveLink href="/users/create" passHref>
+                        <ActiveLink activeClassName="" href="/users/create" passHref>
                             <button className={styles.addNewUser}>+ Adicionar novo usuário</button>
                         </ActiveLink>
                         
@@ -100,7 +100,7 @@ export default function Users({data}: {data: UserData[]}) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {currentItems.map(users => {
+                                        {currentItems?.length === 0 ? '' : currentItems?.map(users => {
                                             return (
                                             <tr key={users.id} className={styles.tableData}>
                                                 <td className={styles.idValue}>{users.id}</td>
@@ -127,7 +127,7 @@ export default function Users({data}: {data: UserData[]}) {
                                         })}
                                     </tbody>
                                 </table>
-                                {data.length === 0 ? 
+                                {currentItems.length === 0 ? 
                                     <div className={styles.loading} >
                                         <img src="/images/loading.gif" alt="load" />
                                     </div>

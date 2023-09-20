@@ -13,7 +13,9 @@ import {
 import { ActiveLink } from './ActiveLink';
 import { ResponsiveSideBar } from './ResponsiveSideBar';
 import { useState, useContext } from 'react';
-import AuthContext from '@/contexts/AuthContext';
+import AuthContext from '../../contexts/AuthContext';
+import { destroyCookie } from 'nookies';
+import { handleOpenMenu } from './SideBarUtils';
 
 export function SideBar() {
     const { signOut } = useContext(AuthContext);
@@ -21,23 +23,23 @@ export function SideBar() {
     const [responsiveSideBar, setResponsiveSideBar] = useState(false);
 
     function handleLogout() {
-        localStorage.removeItem('isLoggedIn');
+        destroyCookie(null, 'loggedUser');
         signOut();
-    }
-
-    function handleOpenMenu() {
-        setResponsiveSideBar(true);
     }
 
     return (
         <>
-            <FaBars onClick={handleOpenMenu} className={styles.activeMenuIcon} />
+            <FaBars
+                data-testid="openResponsiveMenu-button" 
+                onClick={() => handleOpenMenu(setResponsiveSideBar)} 
+                className={styles.activeMenuIcon} 
+            />
             <div className={styles.sideBar}>
                 <h1 className='mb-5'>MS Dashboard</h1>
                 <div className='d-flex flex-column gap-5'>
                     <div className={styles.navItem}>
                         <h5 className='mb-3'>Principal</h5>
-                            <ActiveLink href="/dashboard" passHref>
+                            <ActiveLink activeClassName={styles.active} href="/dashboard" passHref>
                                 <div className='d-flex align-items-center gap-2'>
                                     <MdDashboard />
                                         <span className='mb-0'>Painel</span>
@@ -47,7 +49,7 @@ export function SideBar() {
 
                     <div className={styles.navItem}>
                         <h5 className='mb-3'>Listas</h5>
-                        <ActiveLink href="/users" passHref>
+                        <ActiveLink activeClassName={styles.active} href="/users" passHref>
                             <div className='d-flex align-items-center gap-2 mb-3'>
                                 <FaUser />
                                 <span className='mb-0'>Usuários</span>
@@ -69,7 +71,7 @@ export function SideBar() {
 
                     <div className={styles.navItem}>
                         <h5 className='mb-3'>Usuário</h5>
-                        <ActiveLink href="/userProfile" passHref>
+                        <ActiveLink activeClassName={styles.active} href="/userProfile" passHref>
                             <div className='d-flex align-items-center gap-2 mb-3'>
                                 <FaUserCircle />
                                 <span className='mb-0'>Perfil</span>
@@ -77,7 +79,11 @@ export function SideBar() {
                         </ActiveLink>
                         <div className='d-flex align-items-center gap-2'>
                             <FaSignOutAlt />
-                            <span onClick={handleLogout} className='mb-0'>Sair</span>
+                            <span data-testid="logout-button" 
+                                onClick={handleLogout} 
+                                className='mb-0'>
+                                    Sair
+                            </span>
                         </div>
                     </div>
                 </div>

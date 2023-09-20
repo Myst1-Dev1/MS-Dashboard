@@ -30,29 +30,34 @@ export function ResponsiveSideBar({ onResponsiveSideBar, onSetResponsiveSideBar 
     function handleCloseMenu() {
         onSetResponsiveSideBar(false);
     }
-
     useEffect(() => {
         const handleRouteChange = () => {
             onSetResponsiveSideBar(false);
         };
-
-        router.events.on('routeChangeComplete', handleRouteChange);
-
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChange);
-          };
-    }, [router])
-
+    
+        if (router && router.events) {
+            router.events.on('routeChangeComplete', handleRouteChange);
+    
+            return () => {
+                router.events.off('routeChangeComplete', handleRouteChange);
+            };
+        }
+    }, [router]);
+    
     return (
         <>
             {onResponsiveSideBar && (
                 <div className={styles.responsiveSideBar}>   
-                    <FaTimes onClick={handleCloseMenu} className={styles.closeMenuIcon} />
+                    <FaTimes
+                        data-testid="close-responsiveSideBar"
+                        onClick={handleCloseMenu} 
+                        className={styles.closeMenuIcon} 
+                    />
                     <h1 className='mb-5'>MS Dashboard</h1>
                     <div className='d-flex flex-column gap-5'>
                         <div className={styles.navItem}>
                             <h5 className='mb-3'>Principal</h5>
-                                <ActiveLink href="/dashboard" passHref>
+                                <ActiveLink activeClassName={styles.active} href="/dashboard" passHref>
                                     <div className='d-flex align-items-center gap-2'>
                                         <MdDashboard />
                                             <span className='mb-0'>Painel</span>
@@ -62,7 +67,7 @@ export function ResponsiveSideBar({ onResponsiveSideBar, onSetResponsiveSideBar 
 
                         <div className={styles.navItem}>
                             <h5 className='mb-3'>Listas</h5>
-                            <ActiveLink href="/users" passHref>
+                            <ActiveLink activeClassName={styles.active} href="/users" passHref>
                                 <div className='d-flex align-items-center gap-2 mb-3'>
                                     <FaUser />
                                     <span className='mb-0'>Usuários</span>
@@ -84,7 +89,7 @@ export function ResponsiveSideBar({ onResponsiveSideBar, onSetResponsiveSideBar 
 
                         <div className={styles.navItem}>
                             <h5 className='mb-3'>Usuário</h5>
-                            <ActiveLink href="/userProfile" passHref>
+                            <ActiveLink activeClassName={styles.active} href="/userProfile" passHref>
                                 <div className='d-flex align-items-center gap-2 mb-3'>
                                     <FaUserCircle />
                                     <span className='mb-0'>Perfil</span>
@@ -92,7 +97,11 @@ export function ResponsiveSideBar({ onResponsiveSideBar, onSetResponsiveSideBar 
                             </ActiveLink>
                             <div className='d-flex align-items-center gap-2'>
                                 <FaSignOutAlt />
-                                <span onClick={handleLogout} className='mb-0'>Sair</span>
+                                <span data-testid="logout-user" 
+                                    onClick={handleLogout} 
+                                    className='mb-0'>
+                                        Sair
+                                </span>
                             </div>
                         </div>
                     </div>

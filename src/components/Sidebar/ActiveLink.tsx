@@ -1,35 +1,34 @@
-import Link, { LinkProps } from "next/link";
-import styles from './styles.module.scss';
-
-import { ReactElement } from "react";
-import { useRouter } from "next/router";
+import Link , { LinkProps } from 'next/link'
+import { ReactNode } from 'react';
+import { useRouter } from 'next/router';
 
 interface ActiveLinkProps extends LinkProps {
-    children: ReactElement;
-    shouldMatchExactHref?: boolean;
+    children:ReactNode;
+    shouldMatchExactHref?:boolean;
+    activeClassName:string
 }
 
-export function ActiveLink({children, 
-                            shouldMatchExactHref = false,
-                            ...rest}
-: ActiveLinkProps) {
+export function ActiveLink({children, shouldMatchExactHref ,activeClassName, ...rest}:ActiveLinkProps) {
     const { asPath } = useRouter();
 
-    let isActive = true;
+
+    let isActive = false;
 
     if (shouldMatchExactHref && (asPath === rest.href || asPath === rest.as)) {
-        isActive = false;
+        isActive = true;
     }
 
-    if (!shouldMatchExactHref && 
-        (asPath.startsWith(String(rest.href)) || 
-         asPath.startsWith(String(rest.as)))) {
-            isActive = false;
+    if (
+        !shouldMatchExactHref &&
+        (asPath.startsWith(String(rest.href)) ||
+        asPath.startsWith(String(rest.href)))
+    ) {
+        isActive = true;
     }
 
     return (
-        <Link className={isActive ? `${styles.white}` : `${styles.red}`} {...rest}>
-            {children}
+        <Link legacyBehavior {...rest}>
+            <a className={isActive ? activeClassName : ''}>{children}</a>
         </Link>
     )
 }

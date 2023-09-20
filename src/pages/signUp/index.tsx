@@ -50,7 +50,7 @@ export default function SignUp() {
     }
 
     const onSubmit:SubmitHandler<CreateUserFormData |any> = async (values) => {
-        await handleSignUp()
+        await handleSignUp();
     }
 
     return (
@@ -128,8 +128,8 @@ export default function SignUp() {
                         </form>
                         <div className="mt-3 d-flex justify-content-center align-items-center flex-column">
                             <p className="mb-0">Já tem uma conta?</p>
-                            <ActiveLink href="/">
-                                <span>Entrar</span>
+                            <ActiveLink activeClassName='' href="/">
+                                <span data-testid='linkToHome'>Entrar</span>
                             </ActiveLink>
                         </div>
                     </div>

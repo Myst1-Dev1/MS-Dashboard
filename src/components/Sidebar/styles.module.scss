@@ -17,6 +17,10 @@
             color: var(--gray-300);
         }
 
+        .active {
+            color: var(--red-500);
+        }
+
         span {
             cursor: pointer;
         }
@@ -25,14 +29,6 @@
 
 .activeMenuIcon {
     display: none;
-}
-
-.white {
-    color: #fff;
-}
-
-.red {
-    color: var(--red-500);
 }
 
 @media(max-width:750px) {
@@ -57,6 +53,10 @@
             0%{
                 opacity: 0;
             }
+        }
+
+        .active {
+            color: var(--red-500);
         }
 
         .closeMenuIcon {

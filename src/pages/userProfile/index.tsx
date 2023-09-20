@@ -11,7 +11,7 @@ import { ChartGainUserGraph } from './ChartGainUserGraph';
 import { GraphsAndJob } from './GraphsAndJob';
 import { UpdateFormUser } from './UpdateFormUser';
 
-export default function userProfile() {
+export default function UserProfile() {
     const { user } = useContext(AuthContext);
 
     const [openForm , setOpenForm] = useState(false);
@@ -35,9 +35,9 @@ export default function userProfile() {
                     <div className={`row ${styles.userContainer}`}>
                         <div className={`col-md-6 d-flex gap-4 ${styles.userBox}`}>
                            
-                            {user.map(userData => {
+                            {user?.map(userData => {
                                 return (
-                                    <div key={userData.id} className='d-flex gap-5'>
+                                    <div key="unique-key" className='d-flex gap-5'>
                                         <div className={styles.imgContainer}>
                                         <img src={file ? URL.createObjectURL(new Blob([file], {type:'image/png'}))
                                         : `${userData.file === undefined ? '/images/uploadImage.png' : userData.file}` }
@@ -45,8 +45,8 @@ export default function userProfile() {
                                         />
                                         </div>
                                         <div className='d-flex flex-column gap-1'>
-                                            <h3>{userData.name}</h3>
-                                            <h6><span>Idade:</span> {userData.age}</h6>
+                                            <h3 data-testid="userName">{userData.name}</h3>
+                                            <h6 data-testid="age"><span>Idade:</span> {userData.age}</h6>
                                             {/* <h6><span>Email:</span> {userData.email}</h6> */}
                                             <h6><span>Telefone:</span> {userData.phone}</h6>
                                             <h6><span>Nacionalidade:</span> {userData.nacionality}</h6>
@@ -62,7 +62,7 @@ export default function userProfile() {
                             <ChartGainUserGraph />
                         </div>
                     </div>
-                        <button 
+                        <button
                             className={styles.updateUserData} 
                             onClick={handleOpenUpdateForm} 
                             type="button">

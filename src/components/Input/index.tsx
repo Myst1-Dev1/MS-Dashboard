@@ -2,6 +2,6 @@ import styles from './styles.module.scss';
 
 export function Input({...props}) {
     return (
-        <input className={styles.Input} {...props} />
+        <input data-testid="inputComponent" className={styles.Input} {...props} />
     )
 }

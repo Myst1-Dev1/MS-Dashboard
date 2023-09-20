@@ -10,13 +10,13 @@ export function Header() {
     return (
         <div className={styles.header}>
             <div className={styles.inputBox}>
-                <input type="text" placeholder='Pesquisar...' />
+                <input data-testid="input-element" type="text" placeholder='Pesquisar...' />
                 <FaSearch className={styles.icon} />
             </div>
             <div className={styles.userIcons}>
-                <FaBell className={styles.icon} />
-                <FaEnvelopeOpen className={styles.icon} />
-                    {user.map(user => {
+                <FaBell data-testid="bell-icon" className={styles.icon} />
+                <FaEnvelopeOpen data-testid="envelope-icon" className={styles.icon} />
+                    {user?.map(user => {
                       return (
                         <div key={user.name} className='d-flex gap-3 align-items-center'>
                             <h6 className='mb-0'>{user.name === undefined ? 'John Doe' : user.name}</h6>

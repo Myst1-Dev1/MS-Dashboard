@@ -4,11 +4,8 @@ import styles from './login.module.scss';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { FormEvent, useContext, useState} from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/router";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebase";
 import { ActiveLink } from "../components/Sidebar/ActiveLink";
-import AuthContext from "@/contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 
 type LoginFormData = {
     email:string;
@@ -16,11 +13,9 @@ type LoginFormData = {
 }
 
 export default function Login() {
-    const { signIn, user } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
 
     const { register, handleSubmit, formState: {errors} } = useForm();
-
-    const router = useRouter();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -91,7 +86,7 @@ export default function Login() {
                         </form>
                         <div className="mt-3 d-flex justify-content-center align-items-center flex-column">
                             <p className="mb-0">Não tem uma conta?</p>
-                            <ActiveLink href="/signUp" passHref>
+                            <ActiveLink activeClassName={styles.active} href="/signUp" passHref>
                                 <span>Inscreva-se</span>
                             </ActiveLink>
                         </div>

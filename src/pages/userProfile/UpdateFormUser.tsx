@@ -59,7 +59,7 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                     nacionality:nacionality,
                     age:age,
                     country:country
-                })
+                });
                 
         } else {
             await setDoc(doc(db, 'loggedUserData', Id), {
@@ -154,7 +154,11 @@ export function UpdateFormUser({ onOpenForm, onSetOpenForm }: UpdateFormUserProp
                 <div className={`mt-5 ${styles.formContainer}`}>
                     <div className='d-flex justify-content-between align-items-center'>
                         <h3>Atualizar Usuário</h3>
-                        <FaTimes onClick={handleCloseUpdateForm} className={styles.closeFormIcon} />
+                        <FaTimes
+                            data-testid="close-form" 
+                            onClick={handleCloseUpdateForm} 
+                            className={styles.closeFormIcon} 
+                        />
                     </div>
                     <form onSubmit={handleUpdateUserData} className='mt-5'>
                         <div className='row mb-3'>
