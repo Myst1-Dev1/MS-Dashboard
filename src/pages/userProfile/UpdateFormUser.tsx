@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './styles.module.scss';
 import { Input } from "../../components/Input";
 import { FaCloudUploadAlt, FaTimes } from "react-icons/fa";
@@ -8,7 +9,6 @@ import { useRouter } from 'next/router';
 import AuthContext from '../../contexts/AuthContext';
 import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { destroyCookie } from 'nookies';
-//import Swal from 'sweetalert2';
 
 interface UpdateFormUserProps {
     onOpenForm:boolean;

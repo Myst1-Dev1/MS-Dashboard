@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaGraduationCap, FaSuitcase } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import { CircleGraph } from '../dashboard/CircleGraph/circleGraph';
