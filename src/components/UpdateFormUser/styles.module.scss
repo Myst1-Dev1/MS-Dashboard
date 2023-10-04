@@ -1,0 +1,41 @@
+.formContainer {
+    animation: accordion 0.3s ease;
+
+    @keyframes accordion {
+        0% {
+            opacity: 0;
+        }
+    }
+
+    form {
+        .icon {
+            color: var(--red-500);
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        // O código abaixo foi utilizado para remover as arrows do input number
+        input[type=number]::-webkit-inner-spin-button { 
+            -webkit-appearance: none;       
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            background-color: var(--red-500);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            transition: 0.3s;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
+}

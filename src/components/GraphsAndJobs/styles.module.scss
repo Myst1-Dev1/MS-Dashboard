@@ -1,0 +1,40 @@
+.graphBox {
+    width: 250px;
+}
+
+.graphBox,.cultureFit, .jobDetails {
+    border: 1px solid var(--gray-400);
+    border-radius: 10px;
+    padding: 1rem;
+
+    span {
+        font-weight: bold;
+    }
+    
+    span, .icon {
+        color: var(--red-500);
+    }
+
+    .icon {
+        font-size: 20px;
+    }
+
+    .skillBox {
+        background-color: var(--gray-800);
+        border-radius: 5px;
+        padding: 0.5rem;
+        
+        h6 {
+            margin: auto;
+            text-align: center;
+            color: #fff;
+            font-size: 0.7rem;
+        }
+    }
+}
+
+.jobDetails {
+    h6 {
+        font-size: 0.8rem;
+    }
+}

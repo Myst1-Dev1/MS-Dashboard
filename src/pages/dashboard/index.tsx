@@ -7,8 +7,9 @@ import { Summary } from "../../components/Summary";
 
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Footer } from "../../components/Footer";
-import { CircleGraph } from "./CircleGraph/circleGraph";
-import { ChartGraph } from "./ChartGraph";
+import { ChartGraph } from "../../components/ChartGraph";
+import { CircleGraph } from "../../components/CircleGraph";
+
 
 export default function Dashboard() {
     return (

@@ -7,9 +7,10 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 
 import AuthContext from '../../contexts/AuthContext';
-import { ChartGainUserGraph } from './ChartGainUserGraph';
-import { GraphsAndJob } from './GraphsAndJob';
-import { UpdateFormUser } from './UpdateFormUser';
+import { ChartGainUserGraph } from '../../components/ChartGainUserGraph';
+
+import { GraphsAndJob } from '../../components/GraphsAndJobs';
+import { UpdateFormUser } from '../../components/UpdateFormUser';
 
 export default function UserProfile() {
     const { user } = useContext(AuthContext);
